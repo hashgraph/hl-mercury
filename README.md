@@ -1,2 +1,2 @@
-# hyperledger-plugin
-Hashgraph plugin for Hyperledger
+# hyperledger-mercury
+Hashgraph implementation of Hyperledger
