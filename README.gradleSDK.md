@@ -3,7 +3,7 @@
 Stripped down version of the Swirlds SDK. Featuring:
 
 - Gradle build (instead of Maven)
-- simplified project structure
+- simplified project structure - focus on state and application
 - copy and paste generated .jar into official Swirls SDK
 - first stab at processing contracts (using Docker for now)
 - first protocol (dumb) for processing smart contracts
