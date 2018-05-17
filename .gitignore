@@ -1,3 +1,5 @@
+.DS_Store
+
 # Binaries for programs and plugins
 *.exe
 *.dll
@@ -26,3 +28,6 @@ old
 
 fc_template
 fcfs--all-systems
+
+
+secrets
