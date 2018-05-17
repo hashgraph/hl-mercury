@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>SwirldsDemos</groupId>
+    <artifactId>SwirldsDemosParent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom-parent.xml</relativePath>
+  </parent>
+
+  <properties>
+    <app.repo>${project.baseUri}../../data/repos/app/</app.repo>
+    <platform.repo>${project.baseUri}../../data/repos/platform/</platform.repo>
+    <sdk.dir>${project.basedir}/../..</sdk.dir>
+    <app.name>GameDemo</app.name>
+  </properties>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>GameDemo</groupId>
+  <!-- Eclipse can't handle a variable ref here -->
+  <artifactId>GameDemo</artifactId>
+</project>

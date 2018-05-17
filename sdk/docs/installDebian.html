@@ -1,0 +1,30 @@
+<html>
+<head>
+	<style>
+		pre {
+			font-family: "Courier 10 Pitch", Courier, monospace;
+			margin-bottom: 1.6em;
+			max-width: 100%;
+			overflow: auto;
+			background-color: #efefef;
+		}
+	</style>
+</head>
+<body>
+
+<h1>Intalling Swirlds on Debian</h1>
+<p>To make Swirlds work on Debian, it is possible that the hardware random number generator needs to be confgured for TLS to work</p>
+
+<h2>Setting up the hardware random number generator</h2>
+<p>
+If the Swirlds software freezes immediately when it is run, then it is possibly a problem with the entropy collection system used by Debian. That might be fixed by doing the following from the command line:
+</p>
+<pre>
+apt-get install haveged
+update-rc.d haveged defaults
+</pre>
+
+<p>
+<a href="index.html">Back</a>
+</p>
+</body>

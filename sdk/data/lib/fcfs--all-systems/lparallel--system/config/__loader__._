@@ -1,0 +1,10 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/lparallel-20131111-git/src/util/config.lisp")
+
+
+(SYSTEM:%IN-PACKAGE "LPARALLEL.UTIL")
+(DEFVAR *NORMAL-OPTIMIZE* '(OPTIMIZE (SPEED 3) (SAFETY #1=1) (DEBUG #1# ) (SPACE 
+#2=0) (COMPILATION-SPEED #2# )))
+(DEFVAR *FULL-OPTIMIZE* '(OPTIMIZE (SPEED 3) (SAFETY #1=0) (DEBUG #1# ) (SPACE #1# ) 
+(COMPILATION-SPEED #1# )))

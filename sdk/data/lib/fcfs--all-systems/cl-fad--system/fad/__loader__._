@@ -1,0 +1,188 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/local-projects/cl-fad-0.7.2/fad.lisp")
+(SETQ SYSTEM::*FASL-UNINTERNED-SYMBOLS* #(#:WHOLE-4266 #:ENVIRONMENT-4267))
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.fad_tmpXDHFYTC9"))
+(SYSTEM:%IN-PACKAGE "CL-FAD")
+(SYSTEM:FSET 'COMPONENT-PRESENT-P (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+0) 1592 '(VALUE) "Helper function for DIRECTORY-PATHNAME-P which checks whether VALUE
+   is neither NIL nor the keyword :UNSPECIFIC.")
+(SYSTEM:FSET 'DIRECTORY-PATHNAME-P (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+1) 1792 '(PATHSPEC) "Returns NIL if PATHSPEC (a pathname designator) does not designate
+a directory, PATHSPEC otherwise.  It is irrelevant whether file or
+directory designated by PATHSPEC does actually exist.")
+(SYSTEM:FSET 'PATHNAME-AS-DIRECTORY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+2) 2161 '(PATHSPEC) "Converts the non-wild pathname designator PATHSPEC to directory
+form.")
+(SYSTEM:FSET 'DIRECTORY-WILDCARD (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+3) 2829 '(DIRNAME) "Returns a wild pathname designator that designates all files within
+the directory named by the non-wild pathname designator DIRNAME.")
+(SYSTEM:FSET 'LIST-DIRECTORY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 4) 3372 
+'(DIRNAME &KEY (FOLLOW-SYMLINKS T)) "Returns a fresh list of pathnames corresponding to all files within
+   the directory named by the non-wild pathname designator DIRNAME.
+   The pathnames of sub-directories are returned in directory form -
+   see PATHNAME-AS-DIRECTORY.
+
+  If FOLLOW-SYMLINKS is true, then the returned list contains
+truenames (symlinks will be resolved) which essentially means that it
+might also return files from *outside* the directory.  This works on
+all platforms.
+
+  When FOLLOW-SYMLINKS is NIL, it should return the actual directory
+contents, which might include symlinks.  Currently this works on SBCL
+and CCL.")
+(SYSTEM:FSET 'PATHNAME-AS-FILE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 5) 
+5515 '(PATHSPEC) "Converts the non-wild pathname designator PATHSPEC to file form.")
+(SYSTEM:FSET 'FILE-EXISTS-P (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 6) 6190 
+'(PATHSPEC) "Checks whether the file named by the pathname designator PATHSPEC
+exists and returns its truename if this is the case, NIL otherwise.
+The truename is returned in `canonical' form, i.e. the truename of a
+directory is returned as if by PATHNAME-AS-DIRECTORY.")
+(SYSTEM:FSET 'DIRECTORY-EXISTS-P (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+7) 7382 '(PATHSPEC) "Checks whether the file named by the pathname designator PATHSPEC
+exists and if it is a directory.  Returns its truename if this is the
+case, NIL otherwise.  The truename is returned in directory form as if
+by PATHNAME-AS-DIRECTORY.")
+(SYSTEM:FSET 'WALK-DIRECTORY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 8) 8012 
+'(DIRNAME FN &KEY DIRECTORIES (IF-DOES-NOT-EXIST :ERROR) (TEST (CONSTANTLY #1=T)) 
+(FOLLOW-SYMLINKS #1# )) "Recursively applies the function FN to all files within the
+directory named by the non-wild pathname designator DIRNAME and all of
+its sub-directories.  FN will only be applied to files for which the
+function TEST returns a true value.  If DIRECTORIES is not NIL, FN and
+TEST are applied to directories as well.  If DIRECTORIES
+is :DEPTH-FIRST, FN will be applied to the directory's contents first.
+If DIRECTORIES is :BREADTH-FIRST and TEST returns NIL, the directory's
+content will be skipped. IF-DOES-NOT-EXIST must be one of :ERROR
+or :IGNORE where :ERROR means that an error will be signaled if the
+directory DIRNAME does not exist.  If FOLLOW-SYMLINKS is T, then your
+callback will receive truenames.  Otherwise you should get the actual
+directory contents, which might include symlinks.  This might not be
+supported on all platforms.  See LIST-DIRECTORY.")
+(DEFVAR *STREAM-BUFFER-SIZE* 8192)
+(SYSTEM:FSET 'COPY-STREAM (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 10) 10710 
+'(FROM TO &OPTIONAL (CHECKP T)) "Copies into TO (a stream) from FROM (also a stream) until the end
+of FROM is reached, in blocks of *stream-buffer-size*.  The streams
+should have the same element type.  If CHECKP is true, the streams are
+checked for compatibility of their types.")
+(SYSTEM:FSET 'COPY-FILE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 11) 11588 
+'(FROM TO &KEY OVERWRITE) "Copies the file designated by the non-wild pathname designator FROM
+to the file designated by the non-wild pathname designator TO.  If
+OVERWRITE is true overwrites the file designtated by TO if it exists.")
+(SYSTEM:FSET 'DELETE-DIRECTORY-AND-FILES (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+12) 12675 '(DIRNAME &KEY (IF-DOES-NOT-EXIST :ERROR)) "Recursively deletes all files and directories within the directory
+designated by the non-wild pathname designator DIRNAME including
+DIRNAME itself.  IF-DOES-NOT-EXIST must be one of :ERROR or :IGNORE
+where :ERROR means that an error will be signaled if the directory
+DIRNAME does not exist.
+
+NOTE: this function is dangerous if the directory that you are
+removing contains symlinks to files outside of it - the target files
+might be removed instead!  This is currently fixed for SBCL and CCL.")
+(SYSTEM:FSET 'PATHNAME-DIRECTORY-PATHNAME (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+14) 15292 '(PATHNAME) "Returns a complete pathname representing the directory of
+PATHNAME. If PATHNAME is already a directory pathname (name NIL, type
+NIL) returns a pathname equal (as per pathname=) to it.")
+(SYSTEM:FSET 'PATHNAME-PARENT-DIRECTORY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+15) 15602 '(PATHNAME) "Returns a pathname which would, by name at least, contain PATHNAME
+as one of its direct children. Symlinks can make the parent/child
+relationship a like opaque, but generally speaking the value returned
+by this function is a directory name which contains PATHNAME.
+
+The root directory, #P\"/\", is its own parent. The parent directory
+of a filename is the parent of the filename's dirname.")
+(SYSTEM:FSET 'CANONICAL-PATHNAME (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+16) 16554 '(PATHNAME) "Remove reduntant information from PATHNAME.
+
+This simply walks down PATHNAME's pathname-directory and drops \".\"
+directories, removes :back and its preceding element.
+
+NB: This function does not access the filesystem, it only looks at the
+values in the pathname and works on their known (or assumed)
+meanings.
+
+NB: Since this function does not access the filesystem it will only
+remove :BACK elements from the path (not :UP elements). Since some
+lisps, ccl/sbcl/clisp convert \"..\" in pathnames to :UP, and
+not :BACK, the actual utility of the function is limited.")
+(SYSTEM:FSET 'MERGE-PATHNAMES-AS-DIRECTORY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+17) 17885 '(&REST PATHNAMES) "Given a list of, probably relative, pathnames returns a single
+directory pathname containing the logical concatenation of them all.
+
+The returned value is the current directory if one were to cd into
+each of PATHNAMES in order. For this reason an absolute pathname will,
+effectively, cancel the affect of any previous relative pathnames.
+
+The returned value's defaults are taken from the first element of
+PATHNAMES (host, version and device).
+
+NB: Since this function only looks at directory names the name and
+type of the elements of PATHNAMES are ignored. Make sure to properly
+use either trailing #\\/s, or pathname-as-directory, to get the
+expected results.
+
+Examples:
+
+    (merge-pathnames-as-directory #P\"foo/\" #P\"bar/\") == #P\"foo/bar/\"
+    (merge-pathnames-as-directory #P\"foo/\" #P\"./bar/\") == #P\"foo/./bar/\"
+    (merge-pathnames-as-directory #P\"foo/\" #P\"/bar/\") == #P\"/bar/\"
+    (merge-pathnames-as-directory #P\"foo/\" #P\"/bar/\" #P'quux/file.txt) == #P\"/bar/quux/\"
+")
+(SYSTEM:FSET 'MERGE-PATHNAMES-AS-FILE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+18) 19771 '(&REST PATHNAMES) "Given a list of, probably relative, pathnames returns a single
+filename pathname containing the logical concatenation of them all.
+
+The returned value's defaults are taken from the first element of
+PATHNAMES (host, version and device). The returned values's name, type
+and version are taken from the last element of PATHNAMES. The
+intervening elements are used only for their pathname-directory
+values.
+
+Examples:
+
+    (merge-pathnames-as-file #P\"foo/\" #P\"bar.txt\") == #P\"foo/bar.txt\"
+    (merge-pathnames-as-file #P\"foo/\" #P\"./bar.txt\") == #P\"foo/./bar.txt\"
+    (merge-pathnames-as-file #P\"foo/\" #P\"/bar/README\") == #P\"/bar/README\"
+    (merge-pathnames-as-file #P\"/foo/\" #P\"/bar/\" #P'quux/file.txt) == #P\"/bar/quux/file.txt\"
+")
+(SYSTEM:FSET '#1=WITH-COMPONENT-TESTERS (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 19)) 21501 '((A B KEY) &BODY BODY))
+(SYSTEM:FSET 'PATHNAME-HOST-EQUAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+20) 22337 '(A B) #1=NIL)
+(SYSTEM:FSET 'PATHNAME-DEVICE-EQUAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+24) 22591 '(A B) #1=NIL)
+(SYSTEM:FSET 'PATHNAME-DIRECTORY-EQUAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+27) 22755 '(A B) #1=NIL)
+(SYSTEM:FSET 'PATHNAME-NAME-EQUAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+29) 23142 '(A B) #1=NIL)
+(SYSTEM:FSET 'PATHNAME-TYPE-EQUAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+32) 23308 '(A B) #1=NIL)
+(SYSTEM:FSET 'PATHNAME-VERSION-EQUAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+35) 23474 '(A B) #1=NIL)
+(SYSTEM:FSET 'PATHNAME-EQUAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 37) 
+23693 '(A B) "Returns T if A and B represent the same pathname. This function
+does not access the filesystem, it only looks at the components of the
+two pathnames to test if they are the same (though by
+passing both A and B to probe-file one can make this function test for file 'sameness'.
+
+Equality is defined as:
+
+  - strings that are string equal
+  - symbol (including nil) or keywords which are eql
+  - lists of the same length with equal (as per these rules) elements.
+
+if any of these tree conditions is false for any of the components in
+A and B then A and B are different, otherwise they are the same.
+
+NB: This function does not convert name strings to pathnames. So
+\"foo.txt\" and #P\"foo.txt\" are different pathnames.")
+(SYSTEM:FSET 'PATHNAME-ABSOLUTE-P (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+38) 24787 '(A) "Returns true if A is an absolute pathname.
+
+This simply tests if A's directory list starts with :ABSOLUTE")
+(SYSTEM:FSET 'PATHNAME-RELATIVE-P (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+39) 24990 '(A) "Returns true if A is a relative pathname.
+
+This simply tests if A's directory starts with :RELATIVE.")
+(SYSTEM:FSET 'PATHNAME-ROOT-P (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 40) 
+25226 '(A) #1=NIL)
+(SETQ #1=*FEATURES* (ADJOIN :CL-FAD #1# ))

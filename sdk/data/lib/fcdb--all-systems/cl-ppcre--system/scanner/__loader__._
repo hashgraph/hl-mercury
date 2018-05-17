@@ -1,0 +1,39 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/cl-ppcre-2.0.4/scanner.lisp")
+(SETQ SYSTEM::*FASL-UNINTERNED-SYMBOLS* #(#:WHOLE-52660 #:ENVIRONMENT-52661 #:WHOLE-52862 #:ENVIRONMENT-52863 #:WHOLE-53011 #:ENVIRONMENT-53012))
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.scanner_tmpCQ1NLVXV"))
+(SYSTEM:%IN-PACKAGE "CL-PPCRE")
+(SYSTEM:FSET '#1=BMH-MATCHER-AUX (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 0)) 1667 '(&KEY CASE-INSENSITIVE-P))
+(SYSTEM:FSET 'CREATE-BMH-MATCHER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+1) 2627 '(PATTERN CASE-INSENSITIVE-P) "Returns a Boyer-Moore-Horspool matcher which searches the (special)
+simple-string *STRING* for the first occurence of the substring
+PATTERN.  The search starts at the position START-POS within *STRING*
+and stops before *END-POS* is reached.  Depending on the second
+argument the search is case-insensitive or not.  If the special
+variable *USE-BMH-MATCHERS* is NIL, use the standard SEARCH function
+instead.  (BMH matchers are faster but need much more space.)")
+(SYSTEM:FSET '#1=CHAR-SEARCHER-AUX (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 5)) 4316 '(&KEY CASE-INSENSITIVE-P))
+(SYSTEM:FSET 'CREATE-CHAR-SEARCHER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+6) 4730 '(CHR CASE-INSENSITIVE-P) "Returns a function which searches the (special) simple-string
+*STRING* for the first occurence of the character CHR. The search
+starts at the position START-POS within *STRING* and stops before
+*END-POS* is reached.  Depending on the second argument the search is
+case-insensitive or not.")
+(PROCLAIM '(INLINE NEWLINE-SKIPPER))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=NEWLINE-SKIPPER) '(LAMBDA (#2=START-POS) (#3=DECLARE 
+(OPTIMIZE SPEED (SAFETY #4=0) (SPACE #4# ) (DEBUG 1) (COMPILATION-SPEED #4# ))) (#3#  
+(#5=FIXNUM #2# )) (BLOCK #1#  (LOOP FOR #6=I OF-TYPE #5#  FROM (1- #2# ) BELOW *END-POS* 
+THEREIS (AND (CHAR= (SCHAR *STRING* #6# ) #\Newline) (1+ #6# ))))))
+(SYSTEM:FSET 'NEWLINE-SKIPPER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 9) 
+5253 '(START-POS) "Finds the next occurence of a character in *STRING* which is behind
+a #Newline.")
+(SYSTEM:FSET '#1=INSERT-ADVANCE-FN (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 10)) 5787 '(ADVANCE-FN))
+(SYSTEM:FSET 'CREATE-SCANNER-AUX (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+11) 16204 '(MATCH-FN MIN-LEN START-ANCHORED-P STARTS-WITH START-STRING-TEST END-ANCHORED-P 
+END-STRING-TEST END-STRING-LEN END-STRING-OFFSET REP-NUM ZERO-LENGTH-NUM REG-NUM) 
+"Auxiliary function to create and return a scanner (which is
+actually a closure).  Used by CREATE-SCANNER.")

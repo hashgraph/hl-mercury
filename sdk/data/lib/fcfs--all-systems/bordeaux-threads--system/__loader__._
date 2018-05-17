@@ -1,0 +1,6 @@
+;; loader code to delegate loading of the embedded fasls below
+(SYSTEM:INIT-FASL :VERSION 42)
+(SYSTEM::LOAD-CONCATENATED-FASL "pkgdcl")
+(SYSTEM::LOAD-CONCATENATED-FASL "bordeaux-threads")
+(SYSTEM::LOAD-CONCATENATED-FASL "impl-abcl")
+(SYSTEM::LOAD-CONCATENATED-FASL "default-implementations")

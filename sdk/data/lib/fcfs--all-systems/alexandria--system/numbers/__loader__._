@@ -1,0 +1,102 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/alexandria-20130128-git/numbers.lisp")
+(SETQ SYSTEM::*FASL-UNINTERNED-SYMBOLS* #(#:WHOLE-13477 #:ENVIRONMENT-13478 #:G13476 #:G13475 #:WHOLE-13512 #:ENVIRONMENT-13513 #:G13511 #:G13510))
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.numbers_tmpB5HQ06SS"))
+(SYSTEM:%IN-PACKAGE "ALEXANDRIA")
+(PROCLAIM '(INLINE CLAMP))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=CLAMP) '(LAMBDA (#2=NUMBER #3=MIN #4=MAX) (BLOCK 
+#1#  (#5=IF (< #2#  #3# ) #3#  (#5#  (> #2#  #4# ) #4#  #2# )))))
+(SYSTEM:FSET 'CLAMP (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 51 '(NUMBER 
+MIN MAX) "Clamps the NUMBER into [min, max] range. Returns MIN if NUMBER is lesser then
+MIN and MAX if NUMBER is greater then MAX, otherwise returns NUMBER.")
+(SYSTEM:FSET 'GAUSSIAN-RANDOM (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 1) 
+322 '(&OPTIONAL MIN MAX) "Returns two gaussian random double floats as the primary and secondary value,
+optionally constrained by MIN and MAX. Gaussian random numbers form a standard
+normal distribution around 0.0d0.
+
+Sufficiently positive MIN or negative MAX will cause the algorithm used to
+take a very long time. If MIN is positive it should be close to zero, and
+similarly if MAX is negative it should be close to zero.")
+(PROCLAIM '(INLINE IOTA))
+(SETF (SYSTEM:INLINE-EXPANSION 'IOTA) '#1=NIL)
+(SYSTEM:FSET 'IOTA (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 4) 1745 '(N &KEY 
+(START 0) (STEP 1)) "Return a list of n numbers, starting from START (with numeric contagion
+from STEP applied), each consequtive number being the sum of the previous one
+and STEP. START defaults to 0 and STEP to 1.
+
+Examples:
+
+  (iota 4)                      => (0 1 2 3)
+  (iota 3 :start 1 :step 1.0)   => (1.0 2.0 3.0)
+  (iota 3 :start -1 :step -1/2) => (-1 -3/2 -2)
+")
+(PROCLAIM '(INLINE MAP-IOTA))
+(SETF (SYSTEM:INLINE-EXPANSION 'MAP-IOTA) '#1=NIL)
+(SYSTEM:FSET 'MAP-IOTA (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 5) 2391 '(FUNCTION 
+N &KEY (START 0) (STEP 1)) "Calls FUNCTION with N numbers, starting from START (with numeric contagion
+from STEP applied), each consequtive number being the sum of the previous one
+and STEP. START defaults to 0 and STEP to 1. Returns N.
+
+Examples:
+
+  (map-iota #'print 3 :start 1 :step 1.0) => 3
+    ;;; 1.0
+    ;;; 2.0
+    ;;; 3.0
+")
+(PROCLAIM '(INLINE LERP))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=LERP) '(LAMBDA (#2=V #3=A #4=B) (BLOCK #1#  (+ 
+#3#  (* #2#  (- #4#  #3# ))))))
+(SYSTEM:FSET 'LERP (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 6) 3015 '(V A 
+B) "Returns the result of linear interpolation between A and B, using the
+interpolation coefficient V.")
+(PROCLAIM '(INLINE MEAN))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=MEAN) '(LAMBDA (#2=SAMPLE) (BLOCK #1#  (/ (REDUCE 
+(FUNCTION +) #2# ) (LENGTH #2# )))))
+(SYSTEM:FSET 'MEAN (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 7) 3187 '(SAMPLE) 
+"Returns the mean of SAMPLE. SAMPLE must be a sequence of numbers.")
+(PROCLAIM '(INLINE MEDIAN))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=MEDIAN) '(LAMBDA (#2=SAMPLE) (BLOCK #1#  (LET* 
+((#3=VECTOR (SORT (COPY-SEQUENCE '#3#  #2# ) (FUNCTION <))) (#4=LENGTH (#4#  #3# )) 
+(#5=MIDDLE (TRUNCATE #4#  #6=2))) (IF (ODDP #4# ) (#7=AREF #3#  #5# ) (/ (+ (#7#  
+#3#  #5# ) (#7#  #3#  (1- #5# ))) #6# ))))))
+(SYSTEM:FSET 'MEDIAN (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 8) 3348 '(SAMPLE) 
+"Returns median of SAMPLE. SAMPLE must be a sequence of real numbers.")
+(PROCLAIM '(INLINE VARIANCE))
+(SETF (SYSTEM:INLINE-EXPANSION 'VARIANCE) '#1=NIL)
+(SYSTEM:FSET 'VARIANCE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 9) 3725 '(SAMPLE 
+&KEY (BIASED T)) "Variance of SAMPLE. Returns the biased variance if BIASED is true (the default),
+and the unbiased estimator of variance if BIASED is false. SAMPLE must be a
+sequence of numbers.")
+(PROCLAIM '(INLINE STANDARD-DEVIATION))
+(SETF (SYSTEM:INLINE-EXPANSION 'STANDARD-DEVIATION) '#1=NIL)
+(SYSTEM:FSET 'STANDARD-DEVIATION (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+11) 4191 '(SAMPLE &KEY (BIASED T)) "Standard deviation of SAMPLE. Returns the biased standard deviation if
+BIASED is true (the default), and the square root of the unbiased estimator
+for variance if BIASED is false (which is not the same as the unbiased
+estimator for standard deviation). SAMPLE must be a sequence of numbers.")
+(SYSTEM:FSET '#1=MAXF (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+12)) 4580 '(#2? &REST NUMBERS &ENVIRONMENT #3?))
+(SYSTEM:FSET '#1=MINF (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+13)) 4748 '(#6? &REST NUMBERS &ENVIRONMENT #7?))
+(DEFCONSTANT +FACTORIAL-BISECTION-RANGE-LIMIT+ 8)
+(DEFCONSTANT +FACTORIAL-DIRECT-MULTIPLICATION-LIMIT+ 13)
+(SYSTEM:FSET '%MULTIPLY-RANGE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 14) 
+5382 '(I J) #1=NIL)
+(PROCLAIM '(INLINE FACTORIAL))
+(SYSTEM:FSET '%FACTORIAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 17) 7598 
+'(N) #1=NIL)
+(SETF (SYSTEM:INLINE-EXPANSION '#1=FACTORIAL) '(LAMBDA (#2=N) (BLOCK #1#  (CHECK-TYPE 
+#2#  (INTEGER 0)) (%FACTORIAL #2# ))))
+(SYSTEM:FSET 'FACTORIAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 18) 7672 
+'(N) "Factorial of non-negative integer N.")
+(SYSTEM:FSET 'BINOMIAL-COEFFICIENT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+19) 7782 '(N K) "Binomial coefficient of N and K, also expressed as N choose K. This is the
+number of K element combinations given N choises. N must be equal to or
+greater then K.")
+(SYSTEM:FSET 'SUBFACTORIAL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 20) 8692 
+'(N) "Subfactorial of the non-negative integer N.")
+(SYSTEM:FSET 'COUNT-PERMUTATIONS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+21) 8918 '(#1=N &OPTIONAL (K #1# )) "Number of K element permutations for a sequence of N objects.
+K defaults to N")

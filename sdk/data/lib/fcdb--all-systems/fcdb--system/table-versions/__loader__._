@@ -1,0 +1,31 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/cb/fcdb/lisp/table-versions.lisp")
+
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.table_versions_tmpFFVM79XR"))
+(SYSTEM:%IN-PACKAGE "FCDB")
+(SYSTEM:FSET 'TABLE-VERSIONS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 18 
+'(PHYS-TABLE NAME-TABLE VERSIONS) "Returns a list of leaf versions in which PHYS-TABLE exists.
+  NAME-TABLE is *NAMES*.")
+(SYSTEM:FSET 'OFFSHOOTS-FOR-TABLE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+3) 1361 '(TAB VERSIONS OFFSHOOT-BRANCHES) "We number nodes uniquely such that, x ancestor of y => x < y, -- (1)
+  Let L1 be the LATTICE-JOIN of those leaves where TAB is visible.
+  Then TAB was defined either in L1 or in an ancestor L0 that now has no other
+  descendants besides the line down to L1. -- (2)
+  We can skip copying data into those OFFSHOOT-BRANCHES whose CADR doesn't even
+  know about TAB.
+  One case  where this is true is when the CADR is smaller than L1, because:
+    From (1), L1 is neither an ancestor of the CADR, nor the CADR itself. -- (3)
+    If there is an L0, it also isn't an ancestor of the CADR because:
+      Imagine that it were.
+      Follow the only descent down. This will eventually reach L1.
+      Before that, by (3), you will reach the CADR.
+      But this CADR is known to have more than one child, because every
+        OFFSHOOT-BRANCH passed in is \"proper\".
+      By (2), CADR is supposed to have only one child, the one leading to L1.
+      That's a contradiction.
+    As no ancestor of such a CADR knows about TAB, the CADR also doesn't.")
+(SYSTEM:FSET 'PHYSICAL-TABLE-NAMES (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+5) 2642 '(VERSION) #1=NIL)
+(SYSTEM:FSET 'VERSION-TABLES (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 6) 2732 
+'(VERSION) "Returns physical-defs of user tables visible in VERSION, in arbitrary order")
