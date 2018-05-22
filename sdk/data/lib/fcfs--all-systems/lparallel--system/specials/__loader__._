@@ -1,0 +1,36 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/lparallel-20131111-git/src/kernel/specials.lisp")
+
+
+(SYSTEM:%IN-PACKAGE "LPARALLEL.KERNEL")
+(DEFVAR *DEBUGGER-ERROR* #1=NIL "Track the error inside the debugger for the `transfer-error' restart.")
+(DEFVAR *HANDLER-ACTIVE-P* #1=NIL "Non-nil when handlers have been established via `call-with-task-handler'.")
+(DEFVAR *CLIENT-HANDLERS* #1=NIL "Records handlers established with `task-handler-bind' in the
+  calling thread.")
+(DEFVAR *TASK-CATEGORY* :DEFAULT "See `kill-tasks'. Default value is `:default'.")
+(DEFVAR *TASK-PRIORITY* :DEFAULT "When bound to `:low', the kernel schedules submitted tasks at low
+  priority. Default value is `:default'.")
+(DEFVAR *WORKER* #1=NIL "The worker instance if inside a worker thread, otherwise nil.")
+(DEFVAR *KERNEL* #1=NIL "The current kernel, or nil.")
+(DEFVAR *MAKE-LIMITER-DATA*)
+(DEFVAR *KERNEL-SPIN-COUNT* 2000 "Default value of the `spin-count' argument to `make-kernel'.")
+(DEFVAR *DEBUG-TASKS-P* T "If true (the default), the debugger is invoked when an error goes
+  unhandled inside a task, i.e. when the handlers established by
+  `task-handler-bind' (if any) do not handle it.
+
+  If false, unhandled errors from tasks are automatically transferred
+  to their parent thread (and/or any dependent threads) via the
+  `transfer-error' restart. This is for convenience -- sometimes you
+  wish to avoid N debugger popups arising from N errors in N worker
+  threads.
+
+  For local control over debugger invocation, bind a task handler:
+
+    (task-handler-bind ((error #'invoke-debugger)) ...)
+
+    (task-handler-bind ((error #'invoke-transfer-error)) ...)")
+(DEFVAR *LISP-EXITING-P* #1=NIL "True if the Lisp process is exiting; for skipping auto-replacement
+  of killed workers during exit.")
+(DEFVAR *ERRORING-WORKERS* #1=NIL "Track debugger popups in order to kill them.")
+(DEFVAR *ERRORING-WORKERS-LOCK* (MAKE-LOCK) "Lock for *erroring-workers*.")

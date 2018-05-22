@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>SwirldsPlatform</groupId>
+  <artifactId>platform-swirlds</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <app.repo>${project.baseUri}sdk/data/repos/app/</app.repo>
+  </properties>
+  <distributionManagement>
+    <repository>
+      <id>app.repo</id>
+      <url>${app.repo}</url>
+    </repository>
+  </distributionManagement>
+
+  <modules>
+    <module>platform</module>
+    <module>fc-parent</module>
+    <module>swirlds</module>
+    <module>sdk/source</module>
+    <module>unreleased/DatabaseDemo</module>
+  </modules>
+</project>

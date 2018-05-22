@@ -1,0 +1,68 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/cl-ppcre-2.0.4/specials.lisp")
+
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.specials_tmp216O4PE0"))
+(SYSTEM:%IN-PACKAGE "CL-PPCRE")
+(DEFVAR *STANDARD-OPTIMIZE-SETTINGS* '(OPTIMIZE SPEED (SAFETY #1=0) (SPACE #1# ) 
+(DEBUG 1) (COMPILATION-SPEED #1# )) "The standard optimize settings used by most declaration expressions.")
+(DEFVAR *SPECIAL-OPTIMIZE-SETTINGS* '(OPTIMIZE SPEED SPACE) "Special optimize settings used only by a few declaration expressions.")
+(DEFVAR *EXTENDED-MODE-P* #1=NIL "Whether the parser will start in extended mode.")
+(PROCLAIM '(BOOLEAN *EXTENDED-MODE-P*))
+(DEFVAR *REGEX-CHAR-CODE-LIMIT* CHAR-CODE-LIMIT "The upper exclusive bound on the char-codes of characters which can
+occur in character classes.  Change this value BEFORE creating
+scanners if you don't need the (full) Unicode support of
+implementations like AllegroCL, CLISP, LispWorks, or SBCL.")
+(PROCLAIM '(FIXNUM *REGEX-CHAR-CODE-LIMIT*))
+(DEFVAR *STRING* "" "The string which is currently scanned by SCAN.
+Will always be coerced to a SIMPLE-STRING.")
+(PROCLAIM '(SIMPLE-STRING *STRING*))
+(DEFVAR *START-POS* 0 "Where to start scanning within *STRING*.")
+(PROCLAIM '(FIXNUM *START-POS*))
+(DEFVAR *REAL-START-POS* #1=NIL "The real start of *STRING*. This is for repeated scans and is only used internally.")
+(PROCLAIM '(TYPE (OR NULL FIXNUM) *REAL-START-POS*))
+(DEFVAR *END-POS* 0 "Where to stop scanning within *STRING*.")
+(PROCLAIM '(FIXNUM *END-POS*))
+(DEFVAR *REG-STARTS* (MAKE-ARRAY 0) "An array which holds the start positions
+of the current register candidates.")
+(PROCLAIM '(SIMPLE-VECTOR *REG-STARTS*))
+(DEFVAR *REGS-MAYBE-START* (MAKE-ARRAY 0) "An array which holds the next start positions
+of the current register candidates.")
+(PROCLAIM '(SIMPLE-VECTOR *REGS-MAYBE-START*))
+(DEFVAR *REG-ENDS* (MAKE-ARRAY 0) "An array which holds the end positions
+of the current register candidates.")
+(PROCLAIM '(SIMPLE-VECTOR *REG-ENDS*))
+(DEFVAR *END-STRING-POS* #1=NIL "Start of the next possible end-string candidate.")
+(DEFVAR *REP-NUM* 0 "Counts the number of \"complicated\" repetitions while the matchers
+are built.")
+(PROCLAIM '(FIXNUM *REP-NUM*))
+(DEFVAR *ZERO-LENGTH-NUM* 0 "Counts the number of repetitions the inner regexes of which may
+have zero-length while the matchers are built.")
+(PROCLAIM '(FIXNUM *ZERO-LENGTH-NUM*))
+(DEFVAR *REPEAT-COUNTERS* (MAKE-ARRAY #1=0 :INITIAL-ELEMENT #1#  :ELEMENT-TYPE 'FIXNUM) 
+"An array to keep track of how often
+repetitive patterns have been tested already.")
+(PROCLAIM '(TYPE (ARRAY FIXNUM (*)) *REPEAT-COUNTERS*))
+(DEFVAR *LAST-POS-STORES* (MAKE-ARRAY 0) "An array to keep track of the last positions
+where we saw repetitive patterns.
+Only used for patterns which might have zero length.")
+(PROCLAIM '(SIMPLE-VECTOR *LAST-POS-STORES*))
+(DEFVAR *USE-BMH-MATCHERS* #1=NIL "Whether the scanners created by CREATE-SCANNER should use the (fast
+but large) Boyer-Moore-Horspool matchers.")
+(DEFVAR *OPTIMIZE-CHAR-CLASSES* #1=NIL "Whether character classes should be compiled into look-ups into
+O(1) data structures.  This is usually fast but will be costly in
+terms of scanner creation time and might be costly in terms of size if
+*REGEX-CHAR-CODE-LIMIT* is high.  This value will be used as the :KIND
+keyword argument to CREATE-OPTIMIZED-TEST-FUNCTION - see there for the
+possible non-NIL values.")
+(DEFVAR *PROPERTY-RESOLVER* #1=NIL "Should be NIL or a designator for a function which accepts strings
+and returns unary character test functions or NIL.  This 'resolver' is
+intended to handle `character properties' like \\p{IsAlpha}.  If
+*PROPERTY-RESOLVER* is NIL, then the parser will simply treat \\p and
+\\P as #\\p and #\\P as in older versions of CL-PPCRE.")
+(DEFVAR *ALLOW-QUOTING* #1=NIL "Whether the parser should support Perl's \\Q and \\E.")
+(DEFVAR *ALLOW-NAMED-REGISTERS* #1=NIL "Whether the parser should support AllegroCL's named registers
+(?<name>\"<regex>\") and back-reference \\k<name> syntax.")
+(SETQ #1=*FEATURES* (ADJOIN :CL-PPCRE #1# ))
+(DEFVAR *HYPERDOC-BASE-URI* "http://weitz.de/cl-ppcre/")
+(FUNCALL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0))

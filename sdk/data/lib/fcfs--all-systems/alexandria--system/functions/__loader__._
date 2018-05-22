@@ -1,0 +1,48 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/alexandria-20130128-git/functions.lisp")
+(SETQ SYSTEM::*FASL-UNINTERNED-SYMBOLS* #(#:WHOLE-8245 #:ENVIRONMENT-8246 #:G8244 #:G8243 #:WHOLE-8286 #:ENVIRONMENT-8287 #:G8437 #:G8438 #:G8535 #:G8536 #:G8600 #:G8601 #:WHOLE-8656 #:ENVIRONMENT-8657))
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.functions_tmpA0QOG4LH"))
+(SYSTEM:%IN-PACKAGE "ALEXANDRIA")
+(PROCLAIM '(INLINE ENSURE-FUNCTION))
+(PROCLAIM '(FTYPE (#1=FUNCTION (T) (VALUES #1#  &OPTIONAL)) ENSURE-FUNCTION))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=ENSURE-FUNCTION) '(LAMBDA (#2=FUNCTION-DESIGNATOR) 
+(BLOCK #1#  (IF (FUNCTIONP #2# ) #2#  (FDEFINITION #2# )))))
+(SYSTEM:FSET 'ENSURE-FUNCTION (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 
+284 '(FUNCTION-DESIGNATOR) "Returns the function designated by FUNCTION-DESIGNATOR:
+if FUNCTION-DESIGNATOR is a function, it is returned, otherwise
+it must be a function name and its FDEFINITION is returned.")
+(SYSTEM:FSET '#1=ENSURE-FUNCTIONF/1 (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 1)) 619 '(#2? &ENVIRONMENT #3?))
+(SYSTEM:FSET '#1=ENSURE-FUNCTIONF (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 2)) 680 '(&REST PLACES))
+(SYSTEM:FSET 'DISJOIN (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 3) 893 '(PREDICATE 
+&REST MORE-PREDICATES) "Returns a function that applies each of PREDICATE and MORE-PREDICATE
+functions in turn to its arguments, returning the primary value of the first
+predicate that returns true, without calling the remaining predicates.
+If none of the predicates returns true, NIL is returned.")
+(SYSTEM:FSET 'CONJOIN (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 6) 1555 '(PREDICATE 
+&REST MORE-PREDICATES) "Returns a function that applies each of PREDICATE and MORE-PREDICATE
+functions in turn to its arguments, returning NIL if any of the predicates
+returns false, without calling the remaining predicates. If none of the
+predicates returns false, returns the primary value of the last predicate.")
+(SYSTEM:FSET 'COMPOSE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 8) 2338 '(FUNCTION 
+&REST MORE-FUNCTIONS) "Returns a function composed of FUNCTION and MORE-FUNCTIONS that applies its
+arguments to to each in turn, starting from the rightmost of MORE-FUNCTIONS,
+and then calling the next one with the primary value of the last.")
+(FUNCALL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 11))
+(SYSTEM:FSET 'MULTIPLE-VALUE-COMPOSE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+14) 3539 '(FUNCTION &REST MORE-FUNCTIONS) "Returns a function composed of FUNCTION and MORE-FUNCTIONS that applies
+its arguments to each in turn, starting from the rightmost of
+MORE-FUNCTIONS, and then calling the next one with all the return values of
+the last.")
+(FUNCALL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 17))
+(SYSTEM:FSET 'CURRY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 20) 4746 '(FUNCTION 
+&REST ARGUMENTS) "Returns a function that applies ARGUMENTS and the arguments
+it is called with to FUNCTION.")
+(FUNCALL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 22))
+(SYSTEM:FSET 'RCURRY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 24) 5550 '(FUNCTION 
+&REST ARGUMENTS) "Returns a function that applies the arguments it is called
+with and ARGUMENTS to FUNCTION.")
+(SYSTEM:FSET '#1=NAMED-LAMBDA (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 26)) 5922 '(NAME LAMBDA-LIST &BODY BODY))

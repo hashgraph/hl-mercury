@@ -1,0 +1,78 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/lparallel-20131111-git/src/cognate/pmap.lisp")
+
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.pmap_tmpEGC242XS"))
+(SYSTEM:%IN-PACKAGE "LPARALLEL.COGNATE")
+(SYSTEM:FSET 'PMAP-INTO/PARTS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 
+1675 '(MAP-INTO RESULT-SEQ FN SEQS SIZE PARTS-HINT) #1=NIL)
+(SYSTEM:FSET 'MAP-NIL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 2) 2248 '(&REST 
+ARGS) #1=NIL)
+(SYSTEM:FSET 'MAPLIST-INTO (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 3) 2337 
+'(RESULT-LIST FN &REST LISTS) "A variation of map-into.")
+(SYSTEM:FSET 'MAP-ITERATE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 5) 2744 
+'(MAP SIZE FN SEQS) "A variation of (map nil ...)/mapc/mapl with size constrained.
+Without a result to delineate sublist boundaries, we must enforce them
+manually.")
+(SYSTEM:FSET 'PMAP-INTO/POWDER/ARRAY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+7) 3346 '(RESULT-SEQ FN SEQS SIZE) "When a sequence of size N is divided into N parts, it becomes powder.")
+(SYSTEM:FSET 'PMAP-INTO/POWDER/LIST (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+10) 3828 '(MAP RESULT-SEQ FN SEQS SIZE) #1=NIL)
+(SYSTEM:FSET 'PMAP-INTO/POWDER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 13) 
+4320 '(MAP-INTO RESULT-SEQ FN SEQS SIZE) #1=NIL)
+(SYSTEM:FSET 'PMAP-INTO/PARSED (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 14) 
+4609 '(MAP-INTO RESULT-SEQ FN SEQS SIZE PARTS-HINT) #1=NIL)
+(SYSTEM:FSET 'PMAP-INTO/UNPARSED (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+15) 4900 '(MAP-INTO RESULT-SEQ FN SEQS) #1=NIL)
+(SYSTEM:FSET 'PMAP-INTO (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 17) 6222 
+'(RESULT-SEQUENCE FUNCTION &REST SEQUENCES) "Parallel version of `map-into'. Keyword arguments `parts' and
+`size' are also accepted (see `pmap').")
+(SYSTEM:FSET 'PMAP-ITERATE/PARTS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+18) 6597 '(MAP FN SEQS SIZE PARTS-HINT) #1=NIL)
+(SYSTEM:FSET 'PMAP-ITERATE/POWDER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+21) 6936 '(MAP FN SEQS SIZE) #1=NIL)
+(SYSTEM:FSET 'PMAP-ITERATE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 24) 7238 
+'(MAP FN SEQS SIZE PARTS-HINT) #1=NIL)
+(SYSTEM:FSET 'PMAP/PARSED (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 25) 7448 
+'(RESULT-TYPE FUNCTION SEQUENCES SIZE PARTS-HINT) #1=NIL)
+(SYSTEM:FSET 'PMAP/UNPARSED (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 26) 7851 
+'(RESULT-TYPE FUNCTION SEQUENCES) #1=NIL)
+(SYSTEM:FSET 'PMAP (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 27) 8024 '(RESULT-TYPE 
+FUNCTION &REST SEQUENCES) "Parallel version of `map'. Keyword arguments `parts' and `size' are
+also accepted.
+
+The `parts' option divides each sequence into `parts' number of parts.
+Default is (kernel-worker-count).
+
+The `size' option limits the number of elements mapped to `size'. When
+given, no `length' calls are made on the sequence(s) passed.
+
+Warning: `size' must be less than or equal to the length of the
+smallest sequence passed. It is unspecified what happens when that
+condition is not met.")
+(SYSTEM:FSET 'PMAPCAR (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 28) 8606 '(FUNCTION 
+&REST SEQUENCES) "Parallel version of `mapcar'. Keyword arguments `parts' and `size'
+are also accepted (see `pmap').
+
+Unlike `mapcar', `pmapcar' also accepts vectors.")
+(SYSTEM:FSET 'PMAPLIST-INTO (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 29) 8846 
+'(RESULT-LIST FUNCTION &REST LISTS) "Like `pmaplist' but results are stored in `result-list'. Keyword
+arguments `parts' and `size' are also accepted (see `pmap').")
+(SYSTEM:FSET 'PMAPLIST (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 30) 9099 '(FUNCTION 
+&REST LISTS) "Parallel version of `maplist'. Keyword arguments `parts' and `size'
+are also accepted (see `pmap').")
+(SYSTEM:FSET 'PMAPL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 31) 9383 '(FUNCTION 
+&REST LISTS) "Parallel version of `mapl'. Keyword arguments `parts' and `size'
+are also accepted (see `pmap').")
+(SYSTEM:FSET 'PMAPC (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 32) 9645 '(FUNCTION 
+&REST LISTS) "Parallel version of `mapc'. Keyword arguments `parts' and `size'
+are also accepted (see `pmap').")
+(SYSTEM:FSET 'PMAPCAN (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 33) 9907 '(FUNCTION 
+&REST LISTS) "Parallel version of `mapcan'. Keyword arguments `parts' and `size'
+are also accepted (see `pmap').")
+(SYSTEM:FSET 'PMAPCON (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 34) 10136 '(FUNCTION 
+&REST LISTS) "Parallel version of `mapcon'. Keyword arguments `parts' and `size'
+are also accepted (see `pmap').")
+(SYSTEM:FSET 'PMAP-REDUCE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 35) 10366 
+'(MAP-FUNCTION REDUCE-FUNCTION SEQUENCE &REST ARGS &KEY START END INITIAL-VALUE PARTS 
+RECURSE) "Equivalent to (preduce reduce-function sequence :key map-function ...).")

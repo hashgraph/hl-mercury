@@ -1,0 +1,43 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/local-projects/bordeaux-threads-0.8.3/src/bordeaux-threads.lisp")
+(SETQ SYSTEM::*FASL-UNINTERNED-SYMBOLS* #(#:WHOLE-3453 #:ENVIRONMENT-3454))
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.bordeaux_threads_tmpQA5EHJW5"))
+(SYSTEM:%IN-PACKAGE "BORDEAUX-THREADS")
+(DEFVAR *SUPPORTS-THREADS-P* #1=NIL "This should be set to T if the running instance has thread support.")
+(SYSTEM:FSET 'MARK-SUPPORTED (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 268 
+'#1=NIL #1# )
+(FUNCALL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 1))
+(MOP::ENSURE-METHOD 'PRINT-OBJECT :LAMBDA-LIST '(CONDITION STREAM) :QUALIFIERS '#1=NIL 
+:SPECIALIZERS (MOP::CANONICALIZE-SPECIALIZERS (LIST 'BORDEAUX-MP-CONDITION 'T)) :FUNCTION 
+(SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 2))
+(FUNCALL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 7))
+(FUNCALL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 10))
+(MOP::ENSURE-METHOD 'PRINT-OBJECT :LAMBDA-LIST '(CONDITION STREAM) :QUALIFIERS '#1=NIL 
+:SPECIALIZERS (MOP::CANONICALIZE-SPECIALIZERS (LIST 'TIMEOUT 'T)) :FUNCTION (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 12))
+(DEFVAR *DEFAULT-SPECIAL-BINDINGS* #1=NIL "This variable holds an alist associating special variable symbols
+  to forms to evaluate. Special variables named in this list will
+  be locally bound in the new thread before it begins executing user code.
+
+  This variable may be rebound around calls to MAKE-THREAD to
+  add/alter default bindings. The effect of mutating this list is
+  undefined, but earlier forms take precedence over later forms for
+  the same symbol, so defaults may be overridden by consing to the
+  head of the list.")
+(SYSTEM:FSET '#1=DEFBINDINGS (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 19)) 2129 '(NAME DOCSTRING &BODY INITFORMS))
+(DEFPARAMETER *STANDARD-IO-BINDINGS* (LIST (#1=CONS '*PACKAGE* '(FIND-PACKAGE :COMMON-LISP-USER)) 
+(#1#  '*PRINT-ARRAY* '#2=T) (#1#  '*PRINT-BASE* '#3=10) (#1#  '*PRINT-CASE* ':UPCASE) 
+(#1#  '*PRINT-CIRCLE* '#4=NIL) (#1#  '*PRINT-ESCAPE* '#2# ) (#1#  '*PRINT-GENSYM* 
+'#2# ) (#1#  '*PRINT-LENGTH* '#4# ) (#1#  '*PRINT-LEVEL* '#4# ) (#1#  '*PRINT-LINES* 
+'#4# ) (#1#  '*PRINT-MISER-WIDTH* '#4# ) (#1#  '*PRINT-PPRINT-DISPATCH* '(COPY-PPRINT-DISPATCH 
+#4# )) (#1#  '*PRINT-PRETTY* '#4# ) (#1#  '*PRINT-RADIX* '#4# ) (#1#  '*PRINT-READABLY* 
+'#2# ) (#1#  '*PRINT-RIGHT-MARGIN* '#4# ) (#1#  '*READ-BASE* '#3# ) (#1#  '*READ-DEFAULT-FLOAT-FORMAT* 
+''SINGLE-FLOAT) (#1#  '*READ-EVAL* '#2# ) (#1#  '*READ-SUPPRESS* '#4# ) (#1#  '*READTABLE* 
+'(COPY-READTABLE #4# ))) "Standard bindings of printer/reader control variables as per CL:WITH-STANDARD-IO-SYNTAX.")
+(SYSTEM:FSET 'BINDING-DEFAULT-SPECIALS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+20) 3389 '(FUNCTION SPECIAL-BINDINGS) "Return a closure that binds the symbols in SPECIAL-BINDINGS and calls
+FUNCTION.")
+(SYSTEM:FSET 'SIGNAL-ERROR-IF-CURRENT-THREAD (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+22) 3763 '(THREAD) #1=NIL)

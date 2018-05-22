@@ -1,3 +1,5 @@
+.DS_Store
+
 # Binaries for programs and plugins
 *.exe
 *.dll
@@ -12,3 +14,21 @@
 
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
+
+#swirlds.jar is patented and may require licensing
+swirlds.jar
+
+#Java builds
+build
+out
+
+#old
+old
+
+
+fc_template
+fcfs--all-systems
+
+
+.secrets
+secrets

@@ -1,0 +1,44 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/alexandria-20130128-git/hash-tables.lisp")
+(SETQ SYSTEM::*FASL-UNINTERNED-SYMBOLS* #(#:WHOLE-7551 #:ENVIRONMENT-7552))
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.hash_tables_tmpFILT0IPQ"))
+(SYSTEM:%IN-PACKAGE "ALEXANDRIA")
+(SYSTEM:FSET 'COPY-HASH-TABLE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 
+25 '(TABLE &KEY KEY TEST SIZE REHASH-SIZE REHASH-THRESHOLD) "Returns a copy of hash table TABLE, with the same keys and values
+as the TABLE. The copy has the same properties as the original, unless
+overridden by the keyword arguments.
+
+Before each of the original values is set into the new hash-table, KEY
+is invoked on the value. As KEY defaults to CL:IDENTITY, a shallow
+copy is returned by default.")
+(PROCLAIM '(INLINE MAPHASH-KEYS))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=MAPHASH-KEYS) '(#2=LAMBDA (#3=FUNCTION #4=TABLE) 
+(BLOCK #1#  (MAPHASH (#2#  (#5=K #6=V) (DECLARE (IGNORE #6# )) (FUNCALL #3#  #5# )) 
+#4# ))))
+(SYSTEM:FSET 'MAPHASH-KEYS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 2) 1092 
+'(FUNCTION TABLE) "Like MAPHASH, but calls FUNCTION with each key in the hash table TABLE.")
+(PROCLAIM '(INLINE MAPHASH-VALUES))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=MAPHASH-VALUES) '(#2=LAMBDA (#3=FUNCTION #4=TABLE) 
+(BLOCK #1#  (MAPHASH (#2#  (#5=K #6=V) (DECLARE (IGNORE #5# )) (FUNCALL #3#  #6# )) 
+#4# ))))
+(SYSTEM:FSET 'MAPHASH-VALUES (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 4) 1353 
+'(FUNCTION TABLE) "Like MAPHASH, but calls FUNCTION with each value in the hash table TABLE.")
+(SYSTEM:FSET 'HASH-TABLE-KEYS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 6) 
+1583 '(TABLE) "Returns a list containing the keys of hash table TABLE.")
+(SYSTEM:FSET 'HASH-TABLE-VALUES (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 9) 
+1796 '(TABLE) "Returns a list containing the values of hash table TABLE.")
+(SYSTEM:FSET 'HASH-TABLE-ALIST (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 12) 
+2025 '(TABLE) "Returns an association list containing the keys and values of hash table
+TABLE.")
+(SYSTEM:FSET 'HASH-TABLE-PLIST (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 14) 
+2262 '(TABLE) "Returns a property list containing the keys and values of hash table
+TABLE.")
+(SYSTEM:FSET 'ALIST-HASH-TABLE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 16) 
+2502 '(ALIST &REST HASH-TABLE-INITARGS) "Returns a hash table containing the keys and values of the association list
+ALIST. Hash table is initialized using the HASH-TABLE-INITARGS.")
+(SYSTEM:FSET 'PLIST-HASH-TABLE (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 17) 
+2857 '(PLIST &REST HASH-TABLE-INITARGS) "Returns a hash table containing the keys and values of the property list
+PLIST. Hash table is initialized using the HASH-TABLE-INITARGS.")
+(SYSTEM:FSET '#1=ENSURE-GETHASH (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 18)) 3241 '(KEY HASH-TABLE &OPTIONAL DEFAULT))

@@ -1,0 +1,33 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/lparallel-20131111-git/src/cognate/pquantifier.lisp")
+
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.pquantifier_tmpU5V5K1KR"))
+(SYSTEM:%IN-PACKAGE "LPARALLEL.COGNATE")
+(SYSTEM:FSET 'PQUANTIFIER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 1675 
+'(QUANTIFIER PREDICATE SEQUENCES BAIL) #1=NIL)
+(SYSTEM:FSET 'PEVERY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 5) 2139 '(PREDICATE 
+&REST SEQUENCES) "Parallel version of `every'. Calls to `predicate' are done in
+parallel, though not necessarily at the same time. Behavior is
+otherwise indistinguishable from `every'.
+
+Keyword arguments `parts' and `size' are also accepted (see `pmap').")
+(SYSTEM:FSET 'PSOME (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 6) 2490 '(PREDICATE 
+&REST SEQUENCES) "Parallel version of `some'. Calls to `predicate' are done in
+parallel, though not necessarily at the same time. Behavior is
+otherwise indistinguishable from `some' except that any non-nil
+predicate comparison result may be returned.
+
+Keyword arguments `parts' and `size' are also accepted (see `pmap').")
+(SYSTEM:FSET 'PNOTEVERY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 7) 2903 '(PREDICATE 
+&REST SEQUENCES) "Parallel version of `notevery'. Calls to `predicate' are done in
+parallel, though not necessarily at the same time. Behavior is
+otherwise indistinguishable from `notevery'.
+
+Keyword arguments `parts' and `size' are also accepted (see `pmap').")
+(SYSTEM:FSET 'PNOTANY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 8) 3281 '(PREDICATE 
+&REST SEQUENCES) "Parallel version of `notany'. Calls to `predicate' are done in
+parallel, though not necessarily at the same time. Behavior is
+otherwise indistinguishable from `notany'.
+
+Keyword arguments `parts' and `size' are also accepted (see `pmap').")

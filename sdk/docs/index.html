@@ -1,0 +1,94 @@
+<html>
+<head>
+	<style>
+		pre {
+			font-family: "Courier 10 Pitch", Courier, monospace;
+			margin-bottom: 1.6em;
+			max-width: 100%;
+			overflow: auto;
+			background-color: #efefef;
+		}
+	</style>
+</head>
+<body>
+
+<h1>Swirlds SDK</h1>
+
+The Swirlds SDK contains the Swirlds browser, example apps with source code that can run in that browser, and documentation for installing, running, and writing new apps using Eclipse. 
+
+<h2>Version history</h2>
+
+<b> Version 18.02.27</b><br>
+The platform now predicts an estimated consensus timestamp for transactions that don't yet have consensus. The GameDemo app has been restructured to take advantage of this new feature.  <br><br>
+
+<b> Version 17.09.15</b><br>
+Added a browser window showing various aspects of how the network is performing.  <br><br>
+
+<b> Version 17.06.11</b><br>
+Enabled TLS. All communication is encrypted with TLS 1.2, with algorithms and key sizes chosen to conform to the Commercial National Security Algorithm Suite
+<a href="https://www.iad.gov/iad/library/ia-guidance/ia-solutions-for-classified/algorithm-guidance/commercial-national-security-algorithm-suite-factsheet.cfm">(CNSA suite)</a>, using the Java 8 cipher suite TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384. Documentation is now available for <a href="keyManagement.html">key management</a>. <br><br>
+
+<b>Version 17.01.18</b><br>
+Added documentation and support for developing new apps without Eclipse. App development can now be done from the command line using only Java, Maven, and a text editor.<br><br>
+
+<b>Version 17.01.04</b><br>
+Added NAT piercing. If this is run on a machine behind a router that does Network Address Translation (NAT), then it will now tell the router to set up port forwarding, so that computers outside the router can communicate with it. This will use either uPNP or NAT-PMP, whichever the router supports. <br><br>
+
+<b>Version 16.12.11</b><br>
+Added a new fast copyable filesystem, and a FilesystemDemo app to demonstrate it. This means the app can create what appears to be an external hard drive, and can create files and directories on it. But it is actually shared between all the members, and all of them see a single, consistent view of it as it changes over time. Furthermore, even if it has grown very large, an app can make a "fast copy" of it, which appears to be a new external drive containing an exact copy of all the bytes on the original drive. Both the original and copy can then be modified independently. The "fast copy" happens almost instantly because of a copy-on-write mechanism that causes information to only be truly copied when a file changes. <br><br>
+
+<b>Version 16.10.05</b><br>
+Added two new demos. The StatsDemo collects various statistics about the running system, such as transactions per second, and writes them to a CSV file. The CryptocurrencyDemo app demonstrates a simulated stock market running on a real cryptocurrency (at least it would be real if the program were to be allowed to run forever, and encryption were turned on).  This also allows unlimited numbers of members.<br><br>
+
+<b>Version 16.08.11</b><br>
+This is the initial Alpha release of the Swirlds platform and SDK. This is just a very early Alpha version. It doesn't have signatures and security, it only has a limited set of features, the API may change, and future releases will flesh out more of the core features. This supports up to three computers running the browser and communicating over the internet, or three instances can run on a single machine. Either way, they should be started at the same time, in order to connect with each other.<br><br>
+
+
+
+<h2>Useful documentation</h2>
+
+<a href="license.html">Swirlds SDK license</a><p>
+
+<a href="acknowledgments.html">Libraries used by the SDK</a><p>
+
+<a href="runBrowser.html">How to run apps in the Swirlds browser</a><p>
+
+<a href="keyManagement.html">Key management</a><p>
+
+<a href="demoApps.html">The Swirlds SDK demo apps</a><p>
+
+<a href="installEclipse.html">How to install / recompile the example apps in Eclipse</a><p>
+
+<a href="installCLI.html">How to install / recompile the example apps from the command line</a><p>
+
+<a href="installDebian.html">Installing on the Debian operating system</a><p>
+
+<a href="installRaspbian.html">Installing on Raspbian operating system</a><p>
+
+<a href="newApp.html">How to create a new Swirlds app using the SDK and Eclipse</a><p>
+
+<a href="javadoc/index.html">The javadoc for the various platform classes that apps use</a> <p>
+
+<a href="ImplementingFastCopyable.html">Advanced development: optimizing FastCopyable classes</a><p>
+
+<a href="http://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf">Tech Report SWIRLDS-TR-2016-01</a> - a long description of the hashgraph, the consensus algorithm, and the math proofs<p>
+
+<a href="http://www.swirlds.com/downloads/SWIRLDS-TR-2016-02.pdf">Tech Report SWIRLDS-TR-2016-02</a> - examples that walk through every step of the algorithm<p>
+
+<h2>Files and directories in the sdk directory</h2>
+
+<table border=0>
+<tr><td>README.txt       &nbsp;&nbsp;&nbsp;&nbsp;</td><td>a note saying to see this file</td></tr>
+<tr><td>swirlds.jar      </td><td>the browser (contains the platform and API)</td></tr>
+<tr><td>config.txt       </td><td>this controls which app runs in the browser, and how it runs</td></tr>
+<tr><td>pom.xml          </td><td>useful for recompiling all the demos in Eclipse with Maven</td></tr>
+<tr><td>/data            </td><td>information used by the browser</td></tr>
+<tr><td>/data/apps       </td><td>a few demo apps </td></tr>
+<tr><td>/data/keys       </td><td>the cryptographic keys to use (if any) and scripts to generate them</td></tr>
+<tr><td>/source          </td><td>Eclipse projects with source code for all the demo apps (also on <a href="https://github.com/lbaird/swirlds-demos">GitHub</a>)</td></tr>
+<tr><td>/docs            </td><td>documentation for using the browser and writing new apps</td></tr>
+<tr><td>/docs/index.html </td><td>this file</td></tr>
+<tr><td>/docs/javadoc    </td><td>the javadoc files for various platform API classes and methods that apps can use</td></tr>
+</table>
+
+</body>

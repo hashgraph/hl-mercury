@@ -1,0 +1,11 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/alexandria-20130128-git/arrays.lisp")
+
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.arrays_tmp75MG2V6G"))
+(SYSTEM:%IN-PACKAGE "ALEXANDRIA")
+(SYSTEM:FSET 'COPY-ARRAY (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 25 '(#1=ARRAY 
+&KEY (ELEMENT-TYPE (ARRAY-ELEMENT-TYPE #1# )) (#2=FILL-POINTER (AND (ARRAY-HAS-FILL-POINTER-P 
+#1# ) (#2#  #1# ))) (ADJUSTABLE (ADJUSTABLE-ARRAY-P #1# ))) "Returns an undisplaced copy of ARRAY, with same fill-pointer and
+adjustability (if any) as the original, unless overridden by the keyword
+arguments.")

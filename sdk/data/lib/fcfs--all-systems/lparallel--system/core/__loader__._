@@ -1,0 +1,200 @@
+"; -*- Mode: Lisp -*-"
+(SYSTEM:INIT-FASL :VERSION 42)
+(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/lparallel-20131111-git/src/kernel/core.lisp")
+(SETQ SYSTEM::*FASL-UNINTERNED-SYMBOLS* #(#:WHOLE-16869 #:ENVIRONMENT-16870 #:WHOLE-17019 #:ENVIRONMENT-17020 #:G17076 #:G17082 #:G17277 #:G17278 #:WHOLE-17390 #:ENVIRONMENT-17391 #:G17565 #:G17566 #:WHOLE-17608 #:ENVIRONMENT-17609 #:WHOLE-17754 #:ENVIRONMENT-17755))
+(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.core_tmpJZRITAYO"))
+(SYSTEM:%IN-PACKAGE "LPARALLEL.KERNEL")
+(COMMON-LISP:IMPORT '(ALEXANDRIA.0.DEV:SIMPLE-STYLE-WARNING))
+(PROCLAIM '(FTYPE (FUNCTION (TASK WORKER) (VALUES T &OPTIONAL)) EXEC-TASK/WORKER))
+(SYSTEM:FSET 'EXEC-TASK/WORKER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 
+1720 '(TASK WORKER) #1=NIL)
+(PROCLAIM '(INLINE EXEC-TASK/NON-WORKER))
+(PROCLAIM '(FTYPE (FUNCTION (TASK) (VALUES T &OPTIONAL)) EXEC-TASK/NON-WORKER))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=EXEC-TASK/NON-WORKER) '(LAMBDA (#2=TASK) (#3=DECLARE 
+(OPTIMIZE (SPEED 3) (SAFETY #4=0) (DEBUG #4# ) (SPACE #4# ) (COMPILATION-SPEED #4# ))) 
+(#3#  (TYPE #2#  #2# )) (BLOCK #1#  (THE (VALUES T &OPTIONAL) (PROGN (CALL-WITH-TASK-HANDLER 
+(TASK-FN #2# )))))))
+(SYSTEM:FSET 'EXEC-TASK/NON-WORKER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+1) 2166 '(TASK) #1=NIL)
+(PROCLAIM '(FTYPE (FUNCTION (KERNEL (OR WORKER NULL)) (VALUES BOOLEAN &OPTIONAL)) 
+STEAL-WORK))
+(SYSTEM:FSET 'STEAL-WORK (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 2) 2524 
+'(KERNEL WORKER) #1=NIL)
+(SYSTEM:FSET 'HANDSHAKE/TO-WORKER/START (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+3) 2778 '(WORKER) #1=NIL)
+(SYSTEM:FSET 'HANDSHAKE/TO-WORKER/FINISH (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+4) 2919 '(WORKER) #1=NIL)
+(SYSTEM:FSET 'HANDSHAKE/FROM-WORKER/START (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+5) 3119 '(WORKER) #1=NIL)
+(SYSTEM:FSET 'HANDSHAKE/FROM-WORKER/FINISH (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+6) 3275 '(WORKER STATUS) #1=NIL)
+(SYSTEM:FSET 'NOTIFY-EXIT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 7) 3468 
+'(WORKER) #1=NIL)
+(SYSTEM:FSET 'WAIT-FOR-WORKER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 8) 
+3588 '(WORKER) #1=NIL)
+(SYSTEM:FSET 'REPLACE-WORKER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 9) 3725 
+'(KERNEL WORKER) #1=NIL)
+(PROCLAIM '(FTYPE (FUNCTION (KERNEL WORKER) (VALUES T &OPTIONAL)) WORKER-LOOP))
+(SYSTEM:FSET 'WORKER-LOOP (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 10) 4568 
+'(KERNEL WORKER) #1=NIL)
+(SYSTEM:FSET '#1=WITH-WORKER-RESTARTS (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 11)) 5350 '(&BODY BODY))
+(SYSTEM:FSET 'CALL-WITH-WORKER-CONTEXT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+12) 5439 '(FN WORKER-CONTEXT KERNEL WORKER) #1=NIL)
+(SYSTEM:FSET 'ENTER-WORKER-LOOP (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 14) 
+6133 '(KERNEL WORKER) #1=NIL)
+(SYSTEM:FSET 'MAKE-ALL-BINDINGS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 16) 
+6393 '(KERNEL BINDINGS) #1=NIL)
+(SYSTEM:FSET '%MAKE-WORKER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 17) 6489 
+'(INDEX TASKS) #1=NIL)
+(SYSTEM:FSET 'MAKE-WORKER-THREAD (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+18) 6773 '(KERNEL WORKER NAME BINDINGS) #1=NIL)
+(SYSTEM:FSET 'MAKE-WORKER (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 20) 6987 
+'(KERNEL INDEX TASKS) #1=NIL)
+(SYSTEM:FSET '#1=WITH-FILL-WORKERS-HANDLER (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 21)) 7415 '(WORKERS &BODY BODY))
+(SYSTEM:FSET '%FILL-WORKERS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 22) 7673 
+'(WORKERS KERNEL) #1=NIL)
+(SYSTEM:FSET 'FILL-WORKERS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 23) 7982 
+'(WORKERS KERNEL) #1=NIL)
+(SYSTEM:FSET 'MAKE-KERNEL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 28) 8498 
+'(WORKER-COUNT &KEY (NAME "lparallel") (BINDINGS (SYSTEM::BACKQ-LIST (#1=SYSTEM::BACKQ-CONS 
+'#2=*STANDARD-OUTPUT* #2# ) (#1#  '#3=*ERROR-OUTPUT* #3# ))) (CONTEXT (FUNCTION FUNCALL)) 
+(SPIN-COUNT *KERNEL-SPIN-COUNT*) (USE-CALLER #4=NIL)) "Create a kernel with `worker-count' number of worker threads.
+
+`name' is a string identifier for this kernel which is reported by
+`print-object'. Worker threads will also be given this name, shown in
+`bordeaux-threads:all-threads'.
+
+`bindings' is an alist for establishing thread-local variables inside
+worker threads. By default workers will have *standard-output* and
+*error-output* bindings.
+
+Dynamic context for each worker may be established with the function
+`context'. The argument passed to `context' is a function which must
+be funcalled. It begins the worker loop and will not return until the
+worker exits. The default value of `context' is #'funcall. The special
+variables in `bindings' are available inside the `context' function.
+
+When a worker discovers that no tasks are available, `spin-count' is
+the number of task-searching iterations done by the worker before
+sleeping.
+
+If `use-caller' is true (default is false) then in certain situations
+the calling thread may be enlisted to steal work from worker threads.
+This is an optimization strategy that currently applies only during
+the execution of functions defined by `defpun' and `defpun/type'.
+Typically in this case the number of workers will be one less than the
+number of cores/CPUs.
+
+A kernel will not be garbage collected until `end-kernel' is called.")
+(SYSTEM:FSET 'CHECK-KERNEL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 29) 11081 
+'#1=NIL "Ensures the value of `*kernel*' is a kernel instance. Provides the
+MAKE-KERNEL and STORE-VALUE restarts. Returns `*kernel*'.")
+(SYSTEM:FSET '#1=DEFINE-WORKER-INFO-READER (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 38)) 11766 '(NAME #2=SLOT &OPTIONAL (RESULT #2# )))
+(SYSTEM:FSET 'KERNEL-BINDINGS (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 40) 
+12080 '#1=NIL "Return the bindings passed to `make-kernel'.")
+(SYSTEM:FSET 'KERNEL-NAME (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 41) 12156 
+'#1=NIL "Return the name passed to `make-kernel'.")
+(SYSTEM:FSET 'KERNEL-CONTEXT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 42) 
+12201 '#1=NIL "Return the context passed to `make-kernel'.")
+(PROCLAIM '(INLINE %KERNEL-WORKER-COUNT))
+(PROCLAIM '(FTYPE (FUNCTION (KERNEL) (VALUES INDEX &OPTIONAL)) %KERNEL-WORKER-COUNT))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=%KERNEL-WORKER-COUNT) '(LAMBDA (#2=KERNEL) (#3=DECLARE 
+(OPTIMIZE (SPEED 3) (SAFETY #4=0) (DEBUG #4# ) (SPACE #4# ) (COMPILATION-SPEED #4# ))) 
+(#3#  (TYPE #2#  #2# )) (BLOCK #1#  (THE (VALUES INDEX &OPTIONAL) (PROGN (LENGTH 
+(WORKERS #2# )))))))
+(SYSTEM:FSET '%KERNEL-WORKER-COUNT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+43) 12252 '(KERNEL) #1=NIL)
+(SYSTEM:FSET 'KERNEL-WORKER-COUNT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+44) 12376 '#1=NIL "Return the number of workers in the current kernel.")
+(SYSTEM:FSET '%MAKE-CHANNEL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 45) 12504 
+'(&KEY FIXED-CAPACITY) #1=NIL)
+(SYSTEM:FSET 'MAKE-CHANNEL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 46) 12687 
+'(&REST ARGS) "Create a channel for submitting and receiving tasks. The current
+value of `*kernel*' is stored for use in `submit-task'.
+
+By default there is no limit on the channel capacity. Passing a
+`fixed-capacity' keyword argument limits the capacity to the value
+passed.
+
+Note that a fixed capacity channel may cause a deadlocked kernel if
+`receive-result' is not called a sufficient number of times.")
+(FUNCALL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 47))
+(PROCLAIM '(FTYPE (#1=FUNCTION (#1# ) (VALUES #1#  &OPTIONAL)) TASK-DYNAMIC-CLOSURE-XX))
+(SYSTEM:FSET 'TASK-DYNAMIC-CLOSURE-XX (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+49) 13462 '(FN) #1=NIL)
+(SYSTEM:FSET '#1=TASK-LAMBDA (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 51)) 13462 '(&BODY BODY))
+(PROCLAIM '(INLINE MAKE-TASK))
+(PROCLAIM '(FTYPE (#1=FUNCTION (#1# ) (VALUES TASK &OPTIONAL)) MAKE-TASK))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=MAKE-TASK) '(LAMBDA (#2=FN) (#3=DECLARE (OPTIMIZE 
+(SPEED 3) (SAFETY #4=0) (DEBUG #4# ) (SPACE #4# ) (COMPILATION-SPEED #4# ))) (#3#  
+(TYPE FUNCTION #2# )) (BLOCK #1#  (THE (VALUES TASK &OPTIONAL) (PROGN (MAKE-TASK-INSTANCE 
+:CATEGORY *TASK-CATEGORY* :FN #2# ))))))
+(SYSTEM:FSET 'MAKE-TASK (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 52) 13881 
+'(FN) #1=NIL)
+(PROCLAIM '(FTYPE (#1=FUNCTION (CHANNEL #1#  LIST) (VALUES T &OPTIONAL)) MAKE-CHANNELED-TASK))
+(SYSTEM:FSET 'MAKE-CHANNELED-TASK (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+53) 14386 '(CHANNEL FN ARGS) #1=NIL)
+(PROCLAIM '(INLINE SUBMIT-RAW-TASK))
+(PROCLAIM '(FTYPE (FUNCTION (TASK KERNEL) (VALUES T &OPTIONAL)) SUBMIT-RAW-TASK))
+(SETF (SYSTEM:INLINE-EXPANSION '#1=SUBMIT-RAW-TASK) '(LAMBDA (#2=TASK #3=KERNEL) 
+(#4=DECLARE (OPTIMIZE (SPEED 3) (SAFETY #5=1) (DEBUG #5# ) (SPACE #6=0) (COMPILATION-SPEED 
+#6# ))) (#4#  (#7=TYPE #2#  #2# )) (#4#  (#7#  #3#  #3# )) (BLOCK #1#  (THE (VALUES 
+T &OPTIONAL) (PROGN (UNLESS (ALIVEP #3# ) (ERROR "Attempted to submit a task to an ended kernel.")) 
+(SCHEDULE-TASK (SCHEDULER #3# ) #2#  *TASK-PRIORITY*))))))
+(SYSTEM:FSET 'SUBMIT-RAW-TASK (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 55) 
+14942 '(TASK KERNEL) #1=NIL)
+(SYSTEM:FSET 'SUBMIT-TASK (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 56) 15187 
+'(CHANNEL FUNCTION &REST ARGS) "Submit a task through `channel' to the kernel stored in `channel'.")
+(SYSTEM:FSET 'RECEIVE-RESULT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 57) 
+15578 '(CHANNEL) "Remove a result from `channel'. If nothing is available the call
+will block until a result is received.")
+(SYSTEM:FSET 'TRY-RECEIVE-RESULT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+58) 15774 '(CHANNEL &KEY TIMEOUT) "If `channel' has a result then remove it and return (values result t).
+
+If no result is available and `timeout' is given, then wait up to
+`timeout' seconds for a result.
+
+If the channel is empty and the timeout has expired, or if the channel
+is empty and no timeout was given, return (values nil nil).
+
+Providing a nil or non-positive value of `timeout' is equivalent to
+providing no timeout.")
+(SYSTEM:FSET '#1=DO-FAST-RECEIVES (SYSTEM:MAKE-MACRO '#1#  (SYSTEM::GET-FASL-FUNCTION 
+SYSTEM:*FASL-LOADER* 59)) 16412 '((RESULT CHANNEL COUNT) &BODY BODY))
+(SYSTEM:FSET 'SHUTDOWN (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 60) 16746 
+'(CHANNEL KERNEL) #1=NIL)
+(SYSTEM:FSET 'END-KERNEL (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 62) 17068 
+'(&KEY WAIT) "Sets `*kernel*' to nil and ends all workers gracefully.
+
+`end-kernel' should not be used as a substitute for properly waiting
+on tasks with `receive-result' or otherwise.
+
+If `wait' is nil (the default) then `end-kernel' returns immediately.
+Workers are waited upon by a separate shutdown manager thread.
+
+If `wait' is non-nil then `end-kernel' blocks until all workers are
+finished. No shutdown manager thread is created.
+
+A list of the implementation-defined worker thread objects is
+returned. If `wait' is nil then the shutdown manager thread is also
+returned as the first element in the list.
+
+Note that creating and destroying kernels is relatively expensive. A
+kernel typically exists for lifetime of the Lisp process. Having more
+than one kernel is fine -- simply use `let' to bind a kernel instance
+to `*kernel*' when you need it. Use `kill-tasks' to terminate
+deadlocked or infinite looping tasks.")
+(SYSTEM:FSET 'TASK-CATEGORIES-RUNNING (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 
+64) 18517 '#1=NIL "Return a vector containing the task category currently running for
+each worker.")
+(SYSTEM:FSET 'KERNEL-INFO (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 65) 18751 
+'(KERNEL) #1=NIL)
+(MOP::ENSURE-METHOD 'PRINT-OBJECT :LAMBDA-LIST '(#1=KERNEL STREAM) :QUALIFIERS '#2=NIL 
+:SPECIALIZERS (MOP::CANONICALIZE-SPECIALIZERS (LIST '#1#  'T)) :FUNCTION (#3=SYSTEM::GET-FASL-FUNCTION 
+#4=SYSTEM:*FASL-LOADER* 66) :FAST-FUNCTION (#3#  #4#  69))
+(SYSTEM:FSET 'TRACK-EXIT (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 72) 19394 
+'#1=NIL #1# )
