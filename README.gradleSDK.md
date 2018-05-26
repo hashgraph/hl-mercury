@@ -8,7 +8,7 @@ Stripped down version of the Swirlds SDK. Featuring:
 - first stab at processing contracts (using Docker for now)
 - first protocol (dumb) for processing smart contracts
 - experiments with Google protobuf for state storage
-
+- convenience script to decouple sdk from this Gradle/smart contract project
 
 ### Prerequisites
 
