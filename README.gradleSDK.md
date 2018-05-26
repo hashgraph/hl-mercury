@@ -40,7 +40,7 @@ Simply provide a reference to the official SDK.
 
 ### Run instructions
 
-Ensure Docker is running on the host machine
+**Ensure Docker is running** on the host machine!
 
 `java -jar /path/to/official/swirlds/sdk/swirlds.jar`
 
