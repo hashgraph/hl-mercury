@@ -1,8 +1,0 @@
-"; -*- Mode: Lisp -*-"
-(SYSTEM:INIT-FASL :VERSION 42)
-(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/cb/fcdb/lisp/test.lisp")
-
-(SETQ SYSTEM:*FASL-LOADER* (SYSTEM::MAKE-FASL-CLASS-LOADER "org.armedbear.lisp.test_tmp7GTUGRWS"))
-(SYSTEM:%IN-PACKAGE "FCDB")
-(SYSTEM:FSET 'TEST (SYSTEM::GET-FASL-FUNCTION SYSTEM:*FASL-LOADER* 0) 18 '#1=NIL 
-#1# )

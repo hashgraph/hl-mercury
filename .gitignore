@@ -32,3 +32,6 @@ fcfs--all-systems
 
 .secrets
 secrets
+
+#Ignore created sdk symlink
+sdk

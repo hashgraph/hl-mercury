@@ -12,13 +12,7 @@
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.swirlds.platform.Browser;
 import com.swirlds.platform.Console;
@@ -42,7 +36,7 @@ public class SharedWorldMain implements SwirldMain {
 	public final int sleepPeriod = 100;
 
 
-	private final long walltime = 10000L;
+
 
 	/**
 	 * This is just for debugging: it allows the app to run in Eclipse. If the config.txt exists and lists a
@@ -152,12 +146,6 @@ public class SharedWorldMain implements SwirldMain {
 			if (!lastAllReceived.equals(allReceived)) {
 				lastAllReceived = allReceived;
 				console.out.println("Received: " + allReceived); // print all received transactions
-
-
-				if(shouldRunSmartContract(received)==true){
-				  runSmartContract();
-				}
-
 			}
 			try {
 				Thread.sleep(sleepPeriod);
@@ -181,122 +169,5 @@ public class SharedWorldMain implements SwirldMain {
 
 
 
-	/*
-	 * not every state update causes a smart contract execution
-	 *
-	 */
-	private boolean shouldRunSmartContract(String received){
-		//TODO - for now, the protocol is a very dumb keyword protocol
-		//System.out.println(received.trim());
-		if(received.trim().endsWith("mercury")==true){
-			return true;
-		}
-		return false;
-	}
 
-	/*
-	 * `docker run -it --rm alpine /bin/ash`
-	 * max walltime of ~10 seconds
-	 */
-	private void runSmartContract(){
-		Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
-
-				//this could be gvisor or some other more secure execution environment
-				String _cmd="docker run -t -d alpine";   //run Alpine Linux in background. Returns an ID once successfully called
-
-				try{
-					Runtime rt = Runtime.getRuntime();
-					Process p = rt.exec(_cmd);
-					p.waitFor();
-					System.out.println("Process exited with code = "+p.exitValue());
-
-					//Get process's output:
-					InputStream is = p.getInputStream();
-					BufferedReader br = new BufferedReader(new InputStreamReader(is));
-					String s;
-					String localContainerID="";
-					while((s=br.readLine()) != null){
-						localContainerID=s;
-						//System.out.println(s);
-					}
-					is.close();
-					System.out.println("Started local container with ID: "+localContainerID);
-
-
-
-
-
-					//checks:
-					if(localContainerID == null){
-						System.out.println("ERROR: Problem starting the container! Is Docker running?");
-						return;
-					}
-					if(localContainerID.compareTo("null") == 0){
-						System.out.println("ERROR: Problem starting the container! Is Docker running?");
-						return;
-					}
-					if(localContainerID.length() < 10){
-						System.out.println("ERROR: Problem starting the container! Is Docker running?");
-						return;
-					}
-
-
-
-
-
-
-
-
-					//passed checks
-					//shutdown after 10 seconds...
-					new Timer().schedule(
-							new TimerTaskEOH(localContainerID) {
-								@Override
-								public void run() {
-									System.out.println("Stopping localContainerID: "+this.localContainerID);
-
-									//fire and forget:
-									try {
-										String _cmd = "docker rm -f " + this.localContainerID;
-										Runtime rt = Runtime.getRuntime();
-										Process p = rt.exec(_cmd);
-										p.waitFor();
-										System.out.println("`docker rm -f ...` request exited with code = " + p.exitValue());
-
-									}catch(IOException e){
-										e.printStackTrace();
-									}catch(InterruptedException e){
-										e.printStackTrace();
-									}
-								}
-							},
-							walltime
-					);
-
-
-				}catch(IOException e){
-					e.printStackTrace();
-				}catch(InterruptedException e){
-					e.printStackTrace();
-				}
-			}
-		});
-		t.run();
-	}
-
-
-
-	private class TimerTaskEOH extends TimerTask{
-		public final String localContainerID;
-
-		TimerTaskEOH(String _localContainerID){
-			this.localContainerID=_localContainerID;
-		}
-		@Override
-		public void run() {
-
-		}
-	}
 }
