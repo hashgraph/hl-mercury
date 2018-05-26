@@ -36,13 +36,21 @@ Simply provide a reference to the official SDK.
 
 `cd sdk.gradle`
 
-`./run.bash /path/to/official/swirlds/sdk`
+`gradle jar`
 
 ### Run instructions
 
 **Ensure Docker is running** on the host machine!
 
-`java -jar /path/to/official/swirlds/sdk/swirlds.jar`
+`./run.bash /path/to/official/swirlds/sdk`
+
+Alternatively,
+
+cd to "sdk"
+
+type:
+
+`java -jar swirlds.jar`
 
 ### Write a transaction that invokes a smart contract execution
 
