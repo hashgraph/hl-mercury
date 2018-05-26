@@ -35,3 +35,11 @@ secrets
 
 #Ignore created sdk symlink
 sdk
+
+
+
+*.lock
+*.bin
+.idea
+*.gitkeep
+javadoc
