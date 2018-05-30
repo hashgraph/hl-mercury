@@ -8,52 +8,74 @@ Stripped down version of the Swirlds SDK. Featuring:
 - first stab at processing contracts (using Docker for now)
 - first protocol (dumb) for processing smart contracts
 - experiments with Google protobuf for state storage
+- convenience script to decouple sdk from this Gradle/smart contract project
 
+### Prerequisites
+
+- Java 8 (Oracle)
+- Gradle
+- *Optional: IntelliJ*
+
+Java 8 (Oracle) and Gradle can be conveniently installed using [sdkman](http://sdkman.io/).
+
+`sdk list java`
+
+`sdk install java 8.0.171-oracle`
+
+`sdk list gradle`
+
+`sdk install gradle 4.7`
 
 ### Build instructions
 
-Gradle version of official Swirlds `sdk` in "sdk.gradle"
+A stripped down gradle version of official Swirlds SDK is in "sdk.gradle"
+
+There you can focus on designing your Main class and State class. Built with Gradle/IntelliJ IDE in mind.
+
+Simply provide a reference to the official SDK.
 
 `cd sdk.gradle`
 
-//build gradle project
-
-`gradle build`
-
-//generate jar:
-
 `gradle jar`
-
-//.jar is in "build/libs/"
-
-//copy the generated jar file to the "sdk" folder
-
-`cp ./build/libs/SharedWorld*.jar ../sdk/data/apps/SharedWorld.jar`
-
-
 
 ### Run instructions
 
-Ensure Docker is running
+**Ensure Docker is running** on the host machine!
 
-`cd sdk`
+`./run.bash /path/to/official/swirlds/sdk`
+
+Alternatively,
+
+cd to "sdk"
+
+type:
 
 `java -jar swirlds.jar`
 
-Note: swirlds.jar should be downloaded from https://swirlds.com
+### Write a transaction that invokes a smart contract execution
 
 Initiate a Docker instance by typing (i.e. stdin):
 
-`mercury`
+"mercury"
 
 into any of the nodes
+
+For now, the pseudocode protocol is:
+
+```
+when(transaction string == "mercury"){
+  - spin up a Docker instance
+  - perform a computation
+  - shut down (walltime=10 seconds)
+}
+```
 
 TODO: net connection - WebSockets, RPC, RabbitMQ, APMQ?
 
 
 ### protobuf
 
-Google protobuf is used in preference to POJOs
+[Google protobuf](https://developers.google.com/protocol-buffers/) is used in preference to POJOs.
 
 State is an array of protobuf bytes[]?
 

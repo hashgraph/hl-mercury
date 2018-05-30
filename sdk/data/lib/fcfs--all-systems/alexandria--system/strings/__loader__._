@@ -1,8 +1,0 @@
-"; -*- Mode: Lisp -*-"
-(SYSTEM:INIT-FASL :VERSION 42)
-(SETQ SYSTEM:*SOURCE* #P"/home/vibhu/quicklisp/dists/quicklisp/software/alexandria-20130128-git/strings.lisp")
-
-
-(SYSTEM:%IN-PACKAGE "ALEXANDRIA")
-(DEFTYPE STRING-DESIGNATOR #1=NIL "A string designator type. A string designator is either a string, a symbol,
-or a character." '(OR SYMBOL STRING CHARACTER))
