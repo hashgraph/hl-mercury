@@ -1,5 +1,5 @@
-# hyperledger-mercury
-Hashgraph implementation of Hyperledger
+# hl-mercury
+Hashgraph implementation of functionality similar to that of Hyperledger
 
 --------
 
