@@ -38,7 +38,14 @@ echo ""
 pushd $1
 
 #First comment out ALL apps from config.txt
-sed -i '' '/^ *app./s/^/#/g' config.txt
+#Identify OS type
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Mac OSX
+        sed -i '' '/^ *app./s/^/#/g' config.txt
+else
+        # Unknown.
+        sed -i '/^ *app./s/^/#/g' config.txt
+fi
 
 #Add our app to official sdk:
 #First get linenumnber of last occurance of "app,"
