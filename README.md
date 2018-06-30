@@ -5,7 +5,7 @@
 
 The [Linux Foundation's](https://www.linuxfoundation.org/) [Hyperledger](https://www.hyperledger.org/) is an influential distributed ledger platform suitable for use in many enterprise use cases. Hyperledger is an open source collaborative effort created to advance cross-industry blockchain technologies. It is a global collaboration, hosted by The Linux Foundation, including leaders in finance, banking, Internet of Things, supply chains, manufacturing and Technology.
 
-Dr. Leemon Baird's [hashgraph algorithm](http://leemon.com/papers/2016b.pdf) is a major step forward in distributed consensus research. Hashgraph forces us to think about the limitations current blockchain technologies and enables the next wave of distributed ledger technology. Legers built using the hashgraph algorithm are:
+Dr. Leemon Baird's [hashgraph algorithm](http://leemon.com/papers/2016b.pdf) is a major step forward in distributed consensus research. Hashgraph forces us to think about the limitations current blockchain technologies and how we can create next-generation distributed ledgers of the future. Ledgers built using the hashgraph algorithm are:
 
 - [Performant](https://www.hederahashgraph.com/platform#speed)
 - [Secure](https://www.hederahashgraph.com/platform#security)
