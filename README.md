@@ -21,6 +21,6 @@ We are a globally distributed team of software developers, engineers and technol
 
 ### Getting started
 
-Most up-to-date code is available at:
+Currently, the most up-to-date code is available at:
 
 https://github.com/dappcoder/hashgraph4orderer
