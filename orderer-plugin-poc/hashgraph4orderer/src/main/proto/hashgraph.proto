@@ -1,0 +1,23 @@
+/*
+SPDX-License-Identifier: Apache-2.0
+*/
+
+syntax = "proto3";
+
+option go_package = "github.com/hyperledger/fabric/protos/orderer";
+option java_package = "org.hyperledger.fabric.protos.orderer";
+
+package orderer;
+
+message Transaction {
+    bytes payload = 1;
+}
+
+message CreateResponse {
+    bool accepted = 1;
+}
+
+service HashgraphService {
+    rpc Create(Transaction) returns (CreateResponse) {}
+}
+
