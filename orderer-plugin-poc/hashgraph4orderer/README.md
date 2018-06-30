@@ -41,7 +41,7 @@ From IntelliJ IDEA:
    * Run -> Edit Configurations...
    * Add new Application cofiguration
    * Main Class: Hashgraph4OrdererMain
-   * Working Directory: /home/alex/Repositories/swirlds/sdk
+   * Working Directory: the path you picked for `sdk.dir` in pom.xml
    * Press "Run..." or "Debug..."
 
 From command line:
