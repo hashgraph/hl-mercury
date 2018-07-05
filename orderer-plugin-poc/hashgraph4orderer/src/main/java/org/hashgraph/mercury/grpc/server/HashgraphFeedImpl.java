@@ -18,7 +18,7 @@ public class HashgraphFeedImpl extends HashgraphServiceGrpc.HashgraphServiceImpl
     @Override
     public void create(Hashgraph.Transaction request, StreamObserver<Hashgraph.CreateResponse> responseObserver) {
         handlers.forEach(handler -> {
-            boolean accepted = handler.handle(request.getPayload().toByteArray());
+            boolean accepted = handler.handle(request);
             Hashgraph.CreateResponse response = Hashgraph.CreateResponse.newBuilder()
                     .setAccepted(accepted)
                     .build();

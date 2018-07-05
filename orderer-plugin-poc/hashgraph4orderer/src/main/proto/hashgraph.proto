@@ -10,7 +10,10 @@ option java_package = "org.hyperledger.fabric.protos.orderer";
 package orderer;
 
 message Transaction {
-    bytes payload = 1;
+    string chainID = 1;
+    bytes payload = 2;
+    bytes signature = 3;
+    bool configMessage = 4;
 }
 
 message CreateResponse {

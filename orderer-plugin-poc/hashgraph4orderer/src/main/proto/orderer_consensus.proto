@@ -11,11 +11,15 @@ package orderer;
 
 
 message ConsensusTransaction {
-    int64 id = 1;
+    int64 creatorId = 1;
     bool consensus = 2;
     int64 timestamp = 3;
-    bytes transaction = 4;
-    int64 addressId = 5;
+    int64 addressId = 4;
+    int64 txSeq = 5;
+    string chainID = 6;
+    bytes payload = 7;
+    bytes signature = 8;
+    bool configMessage = 9;
 }
 
 message ConsensusResponse {

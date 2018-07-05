@@ -1,8 +1,8 @@
-import org.hashgraph.mercury.grpc.client.OrdererClient;
-import org.hashgraph.mercury.grpc.server.ConsensusHandler;
 import com.swirlds.platform.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hashgraph.mercury.grpc.client.OrdererClient;
+import org.hashgraph.mercury.grpc.server.ConsensusHandler;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,10 +10,13 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class Hashgraph4OrdererState implements SwirldState {
 
     private static final Logger LOG = LogManager.getLogger("Hashgraph4Orderer");
+
+    private AtomicLong lastTransactionId = new AtomicLong(-1L);
 
     private List<String> strings = new ArrayList<String>();
 
@@ -49,6 +52,7 @@ public class Hashgraph4OrdererState implements SwirldState {
     public synchronized void copyFrom(SwirldState old) {
         Hashgraph4OrdererState oldHSState = (Hashgraph4OrdererState) old;
         strings = new ArrayList<>(oldHSState.strings);
+        lastTransactionId = new AtomicLong(((Hashgraph4OrdererState) old).lastTransactionId.get());
         addressBook = oldHSState.addressBook.copy();
         consensusHandlers = new ArrayList<>(oldHSState.consensusHandlers);
     }
@@ -56,11 +60,20 @@ public class Hashgraph4OrdererState implements SwirldState {
     @Override
     public synchronized void handleTransaction(long id, boolean consensus,
                                                Instant timestamp, byte[] transaction, Address address) {
+
         if (consensus) {
+            long txId = nextTransactionId();
+
             String message = new String(transaction, StandardCharsets.UTF_8);
             strings.add(message);
-            consensusHandlers.forEach(handler -> handler.handle(id, consensus, timestamp, transaction, address));
+            consensusHandlers.forEach(handler -> {
+                handler.handle(id, consensus, timestamp, transaction, address, txId);
+            });
         }
+    }
+
+    private synchronized long nextTransactionId() {
+        return lastTransactionId.incrementAndGet();
     }
 
     @Override

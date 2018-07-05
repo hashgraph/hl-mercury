@@ -1,13 +1,14 @@
 package org.hashgraph.mercury.grpc.client;
 
-import org.hashgraph.mercury.grpc.server.ConsensusHandler;
-import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.swirlds.platform.Address;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hashgraph.mercury.grpc.server.ConsensusHandler;
+import org.hyperledger.fabric.protos.orderer.Hashgraph;
 import org.hyperledger.fabric.protos.orderer.OrdererConsensus;
 import org.hyperledger.fabric.protos.orderer.OrdererServiceGrpc;
 
@@ -39,24 +40,29 @@ public class OrdererClient implements ConsensusHandler {
     }
 
     @Override
-    public void handle(long id, boolean consensus, Instant timestamp, byte[] transaction, Address address) {
-        // TODO check that the server is there first.
-        sendGossipedTransaction(id, consensus, timestamp, transaction, address);
+    public void handle(long id, boolean consensus, Instant timestamp, byte[] transaction, Address address, long txId) {
+        sendGossipedTransaction(id, consensus, timestamp, transaction, address, txId);
     }
 
 
-    public void sendGossipedTransaction(long id, boolean consensus, Instant timestamp, byte[] transaction, Address address) {
+    public void sendGossipedTransaction(long id, boolean consensus, Instant timestamp, byte[] transaction, Address address, long txId) {
         try {
+            Hashgraph.Transaction message = Hashgraph.Transaction.parseFrom(transaction);
+
             OrdererConsensus.ConsensusTransaction gossiped = OrdererConsensus.ConsensusTransaction
                     .newBuilder()
-                    .setId(id)
+                    .setCreatorId(id)
                     .setConsensus(consensus)
                     .setTimestamp(timestamp.toEpochMilli())
-                    .setTransaction(ByteString.copyFrom(transaction))
-//              .setAddressId(address.getId())
+//                    .setAddressId(address.getId())
+                    .setTxSeq(txId)
+                    .setChainID(message.getChainID())
+                    .setPayload(message.getPayload())
+                    .setSignature(message.getSignature())
+                    .setConfigMessage(message.getConfigMessage())
                     .build();
             blockingStub.consensus(gossiped);
-        } catch (StatusRuntimeException e) {
+        } catch (StatusRuntimeException | InvalidProtocolBufferException e) {
             LOG.warn(e);
             throw new RuntimeException("RPC failed: {0}", e);
         }
