@@ -1,12 +1,12 @@
-import org.hashgraph.mercury.grpc.server.ConsensusHandler;
-import org.hashgraph.mercury.grpc.server.GrpcServer;
 import com.swirlds.platform.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hashgraph.mercury.grpc.server.ConsensusHandler;
+import org.hashgraph.mercury.grpc.server.GrpcServer;
+import org.hyperledger.fabric.protos.orderer.Hashgraph;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.time.Instant;
 
 public class Hashgraph4OrdererMain implements SwirldMain, ConsensusHandler {
@@ -46,9 +46,12 @@ public class Hashgraph4OrdererMain implements SwirldMain, ConsensusHandler {
         }
     }
 
-    private boolean sendAsTransaction(byte[] message) {
-        getConsole().println("Got one transaction from Hyperledger Orderer. Bytes: " + message.length);
-        return this.platform.createTransaction(message);
+    private boolean sendAsTransaction(Hashgraph.Transaction message) {
+        getConsole().println("Got one transaction from Hyperledger Orderer." +
+                "\nPayload Bytes:   " + message.getPayload().size() +
+                "\nChainID:         " + message.getChainID() +
+                "\nConfig:          " + message.getConfigMessage());
+        return this.platform.createTransaction(message.toByteArray());
     }
 
     @Override
@@ -68,13 +71,8 @@ public class Hashgraph4OrdererMain implements SwirldMain, ConsensusHandler {
     }
 
     @Override
-    public void handle(long id, boolean consensus, Instant timestamp, byte[] transaction, Address address) {
-        try {
-            getConsole().println("CONSENSUS: \n" + new String(transaction, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            LOG.warn(e);
-            throw new RuntimeException(e);
-        }
+    public void handle(long id, boolean consensus, Instant timestamp, byte[] transaction, Address address, long txId) {
+        getConsole().println("Received CONSENSUS transaction. TxID: " + txId);
     }
 
     public PrintStream getConsole() {
