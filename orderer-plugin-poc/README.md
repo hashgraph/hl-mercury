@@ -11,7 +11,7 @@ This sections describes all the steps that are necessary to launch a Hyperledger
 
 #### 1.1 Prerequisites
 Follow the instructions on Hyperledger page to install Docker, Docker Compose and Go Programing Language.
-https://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html
+https://hyperledger-fabric.readthedocs.io/en/release-1.2/prereqs.html
 
 
 #### 1.2 Clone forked fabric to go src dir
@@ -25,8 +25,8 @@ cd fabric/
 
 Point the fabric repo to the forked version that contains the changes necessary to run the hashgraph plugin: 
 ```
-git remote add fork git@github.com:dappcoder/fabric.git
-git checkout -b hashgraph-orderer-plugin fork/hashgraph-orderer-plugin
+git remote add fork git@github.com:hashgraph/fabric.git
+git checkout -b hashgraph-orderer-plugin-poc fork/hashgraph-orderer-plugin-poc
 ```
 
 The reason we first clone the original (hyperledger) repo and then we switch to a branch in the fork is to not break the go import statements that use absolute file paths.
@@ -59,8 +59,8 @@ Fabric Samples' role in our case is to reuse some of the example scripts that ar
 
 #### 2.1 Clone the repo
 ```
-git clone git@github.com:dappcoder/fabric-samples.git
-git checkout hashgraph-orderer-plugin
+git clone git@github.com:hashgraph/fabric-samples.git
+git checkout hashgraph-orderer-plugin-poc
 ```
 
 #### 2.2 Swirlds SDK
@@ -88,7 +88,7 @@ Change the `sdk.dir` property in the `pom.xml` file to point to the location you
 
 For example:
 ```
-<sdk.dir>/home/dappcoder/fabric-samples/first-network/swirlds-sdk/sdk</sdk.dir>
+<sdk.dir>/home/user/fabric-samples/first-network/swirlds-sdk/sdk</sdk.dir>
 ```
 
 #### 3.3 Build it 
