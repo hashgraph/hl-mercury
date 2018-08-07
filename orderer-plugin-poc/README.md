@@ -44,13 +44,13 @@ docker images
 
 You can find the binaries in the build directory
 ```
-ls -l build/bin
+ls -l .build/bin
 ```
 
 Add build/bin to your PATH environment variable.
 On Linux add this to ~/.profile
 ```
-export PATH=$GOPATH/src/github.com/hyperledger/fabric/build/bin:$PATH
+export PATH=$GOPATH/src/github.com/hyperledger/fabric/.build/bin:$PATH
 source ~/.profile
 ```
 
