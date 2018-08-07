@@ -21,6 +21,5 @@ We are a globally distributed team of software developers, engineers and technol
 
 ### Getting started
 
-Currently, the most up-to-date code is available at:
-
-https://github.com/dappcoder/hashgraph4orderer
+Currently, we have a working Proof Of Concept that uses Hyperledger Fabric's pluggable consensus capability in order to integrate with Swirlds' Hashgraph SDK. 
+See the documentation on how to run HL Fabric together with Hashgraph: [hl-mercury/orderer-plugin-poc/README.md](hl-mercury/orderer-plugin-poc/README.md)
