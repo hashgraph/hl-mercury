@@ -23,4 +23,4 @@ We are a globally distributed team of software developers, engineers and technol
 
 Currently, we have a working Proof Of Concept that uses Hyperledger Fabric's pluggable consensus capability in order to integrate with Swirlds' Hashgraph SDK. 
 
-See the documentation on how to run HL Fabric together with Hashgraph: [hl-mercury/orderer-plugin-poc/README.md](hl-mercury/orderer-plugin-poc/README.md)
+See the documentation on how to run HL Fabric together with Hashgraph: [orderer-plugin-poc/README.md](orderer-plugin-poc/README.md)
